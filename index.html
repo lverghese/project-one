@@ -9,20 +9,37 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-
     <!-- Page Layout here -->
+    <nav>
+    <div class="nav-wrapper">
+
+        <h3 class="brand-logo center">Book and Movie</h3>
+
+    </div>
+    
+    
+    </nav>
+
+    
+
     <div class="row">
 
         <div class="col s3">
-            <form class="movies" action="action_page.php">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-              </form>
+            <div class="card">
+                <h3 class="card-title text-uppercase">Search for your desired book</h3>
+                <form class="movies" action="action_page.php">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i>Search</button>
+                </form>
+            </div>
 
-              <form class="books" action="action_page.php">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-              </form>  
+            <div class="card">
+                <h3 class="card-title text-uppercase">Search for your desired movie</h3>
+                <form class="books" action="action_page.php">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i>Search</button>
+                </form>  
+            </div>
         </div>
   
         <div class="col s9">
