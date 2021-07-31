@@ -12,17 +12,21 @@
 
     <!-- Page Layout here -->
     <div class="row">
-
         <div class="col s3">
+
+            <ul id="slide-out" class="sidenav sidenav-fixed ">
             <form class="movies" action="action_page.php">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
+                <label for="Search A Movie"><strong>Search A Movie</strong></label>
+                <input type="search" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i>Submit</button>
               </form>
 
               <form class="books" action="action_page.php">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-              </form>  
+                <label for="Search A Book"><strong>Search A Book</strong></label>
+                <input type="search" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i>Submit</button>
+              </form>
+            </ul> 
         </div>
   
         <div class="col s9">
