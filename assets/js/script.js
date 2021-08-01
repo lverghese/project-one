@@ -1,23 +1,37 @@
-var bookAPIKey = "j6Kh3WHlTmst7fqijtBiGQZe8BFyQjzc"
-const movieApiKey = "53e27a88"
+const bookAPIKey = "j6Kh3WHlTmst7fqijtBiGQZe8BFyQjzc"
+const movieApiKey = "9460c855"
 var userTitleSearch = ""
 var type = ""
 
+var movieInputEl = document.querySelector("#movieName")
+
 
 //function to get info from the book api
-fetch("https://api.nytimes.com/svc/books/v3/reviews.json?title=${userTitleSearch}&api-key=j6Kh3WHlTmst7fqijtBiGQZe8BFyQjzc")
-      .then(function(response){
-          console.log('Success!');
-      })
-      .catch(function(error){
-          console.log('API trouble'+ error)
-      });
-    
+
+
+
+
 //function to get info from the movie api
-fetch("http://www.omdbapi.com/?tt0108037&apikey=53e27a88")
-      .then(function(response){
-          console.log('Success!');
+
+var getMovie = function() {
+    
+    var movieUrl = "http://www.omdbapi.com/?apikey=" + movieApiKey + "&s=batman" ;
+
+    fetch(movieUrl)
+    .then(function(response) {
+        //if response was successful
+        if (response.ok) {
+            console.log(response);
+            response.json().then(function(data) {
+                console.log(data);
+            });
+        } else {
+            alert('Error: ' + response.statusText);
+        }
       })
-      .catch(function(error){
-          console.log('API trouble'+ error)
+      .catch(function(error) {
+          alert('Unable to connect to movie');
       });
+    }
+
+    getMovie();
