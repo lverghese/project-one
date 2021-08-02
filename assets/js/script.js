@@ -1,12 +1,13 @@
 const bookAPIKey = "AIzaSyDcXOeyScItwcFMcUTf8T0ESWNi1x22kvU"
 const movieAPIKey = "9460c855"
 
-var movieInputEl = document.getElementById("movieSearch");
+var movieInputEl = document.getElementById("movieSearch")
 var releaseYear = document.getElementById("releaseYear");
 var movieRating = document.getElementById("movieRating");
 var boxOffice = document.getElementById("boxOffice");
 var smallPlot = document.getElementById("smallPlot");
 var director = document.getElementById("director");
+var movieTitle = document.getElementById("movieTitle");
 
 //function to get info from the book api
 
@@ -20,7 +21,7 @@ var getBook = function() {
         if (response.ok) {
             console.log(response);
             response.json().then(function(data) {
-                console.log(data);
+                console.log(data.items[0].volumeInfo.title);
             });
         } else {
             alert('Error: ' + response.statusText);
@@ -33,8 +34,10 @@ var getBook = function() {
 
 
 
-//retrieving the movie title and sending it to the html
 
+
+
+//retrieving the movie title and sending it to the html
 var getMovieTitle = function() {
 
     //getting a value from the input element
@@ -48,6 +51,43 @@ var getMovieTitle = function() {
     }
 }
 
+//search button for movie
+var searchBtn = document.getElementById("titleInput")
+searchBtn.addEventListener("click", function() {
+    var movieInputEl = document.getElementById("movieSearch")
+    var movieElement = {
+        movieName: movieInputEl.value
+    };
+    saveMovie(movieElement);
+    getMovieTitle;
+    console.log("poop")
+    
+})
+
+//saving the movie searches in local storage
+var saveMovie = function(movieElement) {
+
+    if (localStorage.getItem("movieData") == null) {
+        var newArray = [];
+        newArray.push(movieElement);
+        localStorage.setItem("cityData", JSON.stringify(newArray));
+    } else {
+        //array already exists in storage
+        var currentMovieData = JSON.parse(localStorage.getItem("movieData"))
+        var movieExists = false;
+
+        for( i = 0; i < currentMovieData.length; i++) {
+            if (currentMovieData[i].movieName == movieElement.movieName) {
+                cityExists = true;
+            }
+        }
+        if (!movieExists) {
+            currentmovieData.push(movieElement);
+            localStorage.setItem("movieData", JSON.stringify(currentMovieData));
+        }
+    }
+};
+
 
 
 
@@ -57,7 +97,7 @@ var getMovieTitle = function() {
 
 var getMovieData = function(movie) {
     
-    var movieUrl = "http://www.omdbapi.com/?apikey=" + movieAPIKey + "&t=batman+begins" + "&r=json";
+    var movieUrl = "http://www.omdbapi.com/?apikey=" + movieAPIKey + "&t=" + movie + "&r=json";
 
     fetch(movieUrl)
     .then(function(response) {
@@ -66,11 +106,13 @@ var getMovieData = function(movie) {
             console.log(response);
             response.json().then(function(title) {
                 console.log(title);
+                movieTitle.innerHTML = title.Title;
                 releaseYear.innerHTML = title.Released;
                 boxOffice.innerHTML = title.BoxOffice;
                 smallPlot.innerHTML = title.Plot;
                 movieRating.innerHTML = title.Rated;
                 director.innerHTML = title.Director;
+
                 
             });
         } else {
