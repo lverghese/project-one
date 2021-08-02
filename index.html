@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css"/>
+    <script src="https://code.jquery.com/jquery.js"></script>
 </head>
 <body>
     <!-- Page Layout here -->
@@ -84,6 +85,7 @@
                 <div class="row center-align">
                     <div class="col s6 center-align">
                     <img src="" alt="Movie Image" class="responsive-img" id="movieImg" style="display:none">
+                    <span id="noPoster" style="display:none" class="white-text">No Poster Available</span>
                     </div>
                 </div>
                 <div class="row">
@@ -102,15 +104,34 @@
                     <div class="col s12 py-3 white-text">Director: <span id="director"></span></div>
                 </div>
 
+                <div class="row">
+                    <div class="col s12 py-3">
+                        <button class="btn waves-effect waves-light" type="button" name="action" id="clearCurrent">Clear
+                            <i class="material-icons right">block</i>
+                          </button>
+                    </div>
+                </div>
+
             </div>
+
 
 
         </div>
 
     </div>
         
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h4>Movie is not valid</h4>
+          <p>Learn more @ tutorialsplane.com!</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+      </div>
       
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="assets/js/script.js"></script>
 </html>

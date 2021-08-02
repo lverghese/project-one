@@ -9,6 +9,16 @@ var smallPlot = document.getElementById("smallPlot");
 var director = document.getElementById("director");
 var movieTitle = document.getElementById("movieTitle");
 var movieImg = document.getElementById("movieImg");
+var noPoster = document.getElementById("noPoster");
+
+
+
+//modal initialization
+$(document).ready(function(){
+    $('.modal').modal();
+  });
+
+
 //function to get info from the book api
 
 var getBook = function() {
@@ -19,9 +29,9 @@ var getBook = function() {
     .then(function(response) {
         //if response was successful
         if (response.ok) {
-            console.log(response);
+            //console.log(response);
             response.json().then(function(data) {
-                console.log(data.items[0].volumeInfo.title);
+                //console.log(data.items[0].volumeInfo.title);
             });
         } else {
             alert('Error: ' + response.statusText);
@@ -45,7 +55,7 @@ var getMovieTitle = function() {
 
     if (title) {
         getMovieData(title);
-        movieInputEl.value = ''
+        
     } else {
         alert("Please input a movie title")
     }
@@ -60,7 +70,6 @@ searchBtn.addEventListener("click", function() {
     };
     saveMovie(movieElement);
     getMovieTitle();
-    console.log("poop")
     
 })
 
@@ -86,6 +95,7 @@ var saveMovie = function(movieElement) {
             localStorage.setItem("movieData", JSON.stringify(currentMovieData));
         }
     }
+   
 };
 
 
@@ -102,10 +112,13 @@ var getMovieData = function(movie) {
     .then(function(response) {
         //if response was successful
         if (response.ok) {
-            console.log(response);
+            //console.log(response);
             response.json().then(function(title) {
-                console.log(title);
-
+                console.log(title.Response);
+                if(title.Response == "False") {
+                    instance.open(modal1);
+                } else {
+                    movieInputEl.value = ''
                 movieTitle.innerHTML = checkData(title.Title);
                 releaseYear.innerHTML = checkData(title.Released);
                 boxOffice.innerHTML = checkData(title.BoxOffice);
@@ -113,12 +126,12 @@ var getMovieData = function(movie) {
                 movieRating.innerHTML = checkData(title.Rated);
                 director.innerHTML = checkData(title.Director);
                 movieImg.src = checkData(title.Poster);
-                movieImg.style.display="block";
-
-                
+                }
+            
             });
+            
         } else {
-            alert('Error: ' + response.statusText);
+            alert("Please input a valid movie");
         }
       })
       .catch(function(error) {
@@ -130,9 +143,38 @@ var getMovieData = function(movie) {
     var checkData = function(result) {
         if (result == null) {
             return "N/A"
+        } else if (result == "N/A") {
+            noPoster.style.display="block";
+            movieImg.style.display="none";
+            return result;
         } else {
+            noPoster.style.display="none";
+            movieImg.style.display="block";
             return result;
         }
 
     }
-  
+
+    //search button for movie
+var searchBtn = document.getElementById("titleInput")
+searchBtn.addEventListener("click", function() {
+    var movieInputEl = document.getElementById("movieSearch")
+    var movieElement = {
+        movieName: movieInputEl.value
+    };
+    saveMovie(movieElement);
+    getMovieTitle();
+    
+})
+
+var clearBtn = document.getElementById("clearCurrent");
+  clearBtn.addEventListener("click", function() {
+    movieTitle.innerHTML = ''
+    releaseYear.innerHTML = ''
+    boxOffice.innerHTML = ''
+    smallPlot.innerHTML = ''
+    movieRating.innerHTML = ''
+    director.innerHTML = ''
+    movieImg.src = ''
+    movieImg.style.display="none";
+  })
