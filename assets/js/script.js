@@ -8,7 +8,7 @@ var boxOffice = document.getElementById("boxOffice");
 var smallPlot = document.getElementById("smallPlot");
 var director = document.getElementById("director");
 var movieTitle = document.getElementById("movieTitle");
-
+var movieImg = document.getElementById("movieImg");
 //function to get info from the book api
 
 var getBook = function() {
@@ -59,7 +59,7 @@ searchBtn.addEventListener("click", function() {
         movieName: movieInputEl.value
     };
     saveMovie(movieElement);
-    getMovieTitle;
+    getMovieTitle();
     console.log("poop")
     
 })
@@ -94,9 +94,8 @@ var saveMovie = function(movieElement) {
 
 
 //function to get info from the movie api
-
 var getMovieData = function(movie) {
-    
+   
     var movieUrl = "http://www.omdbapi.com/?apikey=" + movieAPIKey + "&t=" + movie + "&r=json";
 
     fetch(movieUrl)
@@ -106,12 +105,15 @@ var getMovieData = function(movie) {
             console.log(response);
             response.json().then(function(title) {
                 console.log(title);
-                movieTitle.innerHTML = title.Title;
-                releaseYear.innerHTML = title.Released;
-                boxOffice.innerHTML = title.BoxOffice;
-                smallPlot.innerHTML = title.Plot;
-                movieRating.innerHTML = title.Rated;
-                director.innerHTML = title.Director;
+
+                movieTitle.innerHTML = checkData(title.Title);
+                releaseYear.innerHTML = checkData(title.Released);
+                boxOffice.innerHTML = checkData(title.BoxOffice);
+                smallPlot.innerHTML = checkData(title.Plot);
+                movieRating.innerHTML = checkData(title.Rated);
+                director.innerHTML = checkData(title.Director);
+                movieImg.src = checkData(title.Poster);
+                movieImg.style.display="block";
 
                 
             });
@@ -124,5 +126,13 @@ var getMovieData = function(movie) {
       });
     }
 
-    getMovieData();
-    getBook();
+
+    var checkData = function(result) {
+        if (result == null) {
+            return "N/A"
+        } else {
+            return result;
+        }
+
+    }
+  
