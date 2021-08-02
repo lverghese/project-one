@@ -1,5 +1,11 @@
 body {
-    background: url(../images/background-2400765_1920.jpg);
+    background: url(../images/background.jpg);
+}
+
+h3.brand-logo.center {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid black;
 }
 
 html {
