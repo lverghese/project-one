@@ -116,7 +116,7 @@ var getMovieData = function(movie) {
             response.json().then(function(title) {
                 console.log(title.Response);
                 if(title.Response == "False") {
-                    instance.open(modal1);
+                    $('#modal1').modal("open");
                 } else {
                     movieInputEl.value = ''
                 movieTitle.innerHTML = checkData(title.Title);
