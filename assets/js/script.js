@@ -17,7 +17,8 @@ var pageCount = document.getElementById("pageCount");
 var bookTitle = document.getElementById("bookTitle");
 var author = document.getElementById("author");
 var bookPlot = document.getElementById("smallSum");
-var bookImg = document.getElementById("bookImg")
+var bookImg = document.getElementById("bookImg");
+var noCover = document.getElementById("noCover");
 
 
 
@@ -218,9 +219,15 @@ searchMovieBtn.addEventListener("click", function() {
 })
 
 //clear button for book data
-var clearBookBtn = document.getElementById("clearCurrent");
+var clearBookBtn = document.getElementById("clearCurrentBook");
 clearBookBtn.addEventListener("click", function() {
-  
+    bookTitle.innerHTML = ''
+    bookPubDate.innerHTML = ''
+    pageCount.innerHTML = ''
+    bookPlot.innerHTML = ''
+    author.innerHTML = ''
+    bookImg.src = ''
+    bookImg.style.display="none";
 })
 
 
@@ -244,10 +251,16 @@ var clearBtn = document.getElementById("clearCurrent");
     } else if (result == "N/A") {
         noPoster.style.display="block";
         movieImg.style.display="none";
+        noCover.style.display="block";
+        bookImg.style.display="none";
         return result;
     } else {
         noPoster.style.display="none";
         movieImg.style.display="block";
+        noCover.style.display="none";
+        bookImg.style.display="block";
+        return result;
+
         return result;
     }
 
