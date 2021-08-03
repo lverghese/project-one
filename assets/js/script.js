@@ -41,7 +41,7 @@ var getBookData = function(book) {
             response.json().then(function(data) {
                 console.log(data.items[0].volumeInfo);
                 if(data.items == "False") {
-                    $('#modal1').modal("open");
+                    $('#modal2').modal("open");
                 } else {
                 bookInputEl.value = ''
                 bookTitle.innerHTML = checkData(data.items[0].volumeInfo.title);
