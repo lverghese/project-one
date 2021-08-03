@@ -4,136 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies/Books</title>
+    <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/style.css"/>
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg" />
 
 </head>
 <body>
-    <!-- Page Layout here -->
-    <nav>
-    <div class="nav-wrapper blue darken-4">
-
-        <h3 class="brand-logo center">Book and Movie</h3>
-
-    </div>
-    
-    
-    </nav>
-
-    
-
-    <div class="container">
-        <div class="row">
-        <div class="col s6">
-            <div class="card">
-                <h3 class="card-title text-uppercase">Search for your desired book</h3>
-                <form class="movies" action="action_page.php">
-                    <input type="text" placeholder="Search.." name="search">
-                    <button class="btn waves-effect waves-light" type="button" name="action">Submit
-                        <i class="material-icons right">send</i>
-                      </button>
-                </form>
-            </div>
-        </div>
-        <div class="col s6">
-            <div class="card">
-                <h3 class="card-title text-uppercase">Search for your desired movie</h3>
-                <form class="books" action="action_page.php">
-                    <input type="text" placeholder="Search.." name="search" id="movieSearch">
-                    <button class="btn waves-effect waves-light" type="button" name="action" id="titleInput">Submit
-                        <i class="material-icons right">send</i>
-                      </button>
-                </form>  
-            </div>
-        </div>
-        </div>
-    
-    
-  
-        <div class="row">
-            <div class="col s6" id="bookContent">
-                <div class="row">
-                    <div class="col s12 h1 center-align white-text" id="bookTitle">Book Title</div>
-                </div>
-
-                <div class="row center-align">
-                    <div class="col s2 center-align">
-                    <img src="./assets/images/harrypotter.jpg" alt="Book Image" class="responsive-img">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 py-3 white-text"> Release Date: <span id="releaseDate"></span></div>
-                </div>
-                <div class="row">
-                    <div class="col s12 py-3 white-text">Publishing Date: <span id="pubDate"></span></div>
-                </div>
-                <div class="row">
-                    <div class="col s12 py-3 white-text">Main Characters: <span id="mainChar"></span></div>
-                </div>
-                <div class="row">
-                    <div class="col s12 py-3 white-text">Small Summary: <span id="smallSum"></span></div>
-                </div>
-            </div>
-          
-            <div class="col s6" id="movieContent">
-                <div class="row">
-                    <div class="col s12 h1 center-align white-text" id="movieTitle"></div>
-                </div>
-
-                <div class="row center-align">
-                    <div class="col s6 center-align">
-                    <img src="" alt="Movie Image" class="responsive-img" id="movieImg" style="display:none">
-                    <span id="noPoster" style="display:none" class="white-text">No Poster Available</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 py-3 white-text"> Release Date: <span id="releaseYear"></span></div>
-                </div>
-                <div class="row">
-                    <div class="col s12 py-3 white-text">Movie Rating: <span id="movieRating"></span></div>
-                </div>
-                <div class="row">
-                    <div class="col s12 py-3 white-text">Box Office Earnings: <span id="boxOffice"></span></div>
-                </div>
-                <div class="row">
-                    <div class="col s12 py-3 white-text">Small Plot Summary: <span id="smallPlot"></span></div>
-                </div>
-                <div class="row">
-                    <div class="col s12 py-3 white-text">Director: <span id="director"></span></div>
-                </div>
-
-                <div class="row">
-                    <div class="col s12 py-3">
-                        <button class="btn waves-effect waves-light" type="button" name="action" id="clearCurrent">Clear
-                            <i class="material-icons right">block</i>
-                          </button>
-                    </div>
-                </div>
-
-            </div>
-
-
-
-        </div>
-
-    </div>
+    <div>
         
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-          <h4>Movie is not valid</h4>
-          <p>Please enter a valid movie</p>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-        </div>
-      </div>
-      
+    </div>
+
 
 </body>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="assets/js/script.js"></script>
 </html>
