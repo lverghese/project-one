@@ -1,3 +1,4 @@
+
 const bookAPIKey = "AIzaSyDcXOeyScItwcFMcUTf8T0ESWNi1x22kvU"
 const movieAPIKey = "9460c855"
 
@@ -264,5 +265,4 @@ var clearBtn = document.getElementById("clearCurrent");
         return result;
     }
 
-}
 
