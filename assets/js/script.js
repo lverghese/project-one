@@ -1,3 +1,4 @@
+
 const bookAPIKey = "AIzaSyDcXOeyScItwcFMcUTf8T0ESWNi1x22kvU"
 const movieAPIKey = "9460c855"
 
@@ -269,7 +270,6 @@ var clearMovieBtn = document.getElementById("clearCurrent");
 
     }
 
-}
 
 //clearing local storage on button click
 var clearBookStorage = document.getElementById("clearBookStorage");

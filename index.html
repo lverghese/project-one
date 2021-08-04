@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Movies/Books</title>
     <style>
         header {
@@ -13,26 +14,28 @@
             color: white;
         }
     </style>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css"/>
+
+    <link href="https://www.fontspace.com/category/logo"><img class="fullstack" src="https://see.fontimg.com/api/renderfont4/lJMd/eyJyIjoiZnMiLCJoIjo2NSwidyI6MTAwMCwiZnMiOjY1LCJmZ2MiOiIjRkZGRkZGIiwiYmdjIjoiIzNDOTdBMiIsInQiOjF9/SGFsZlN0YWNrIE1lZGlh/above-demo-regular.png">
     <script src="https://code.jquery.com/jquery.js"></script>
     <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg" />
 
+   
 </head>
 <body>
     <!-- Page Layout here -->
     <header>
-    <div>
+        <div>
 
-        <h3 class="brand-logo center"></h3>
+            <h3 class="brand-logo center"></h3>
 
-    </div>
+        </div>
     
-    
-</header>
 
+    
+    </header>
 
     
 
@@ -43,8 +46,10 @@
                 <h3 class="card-title text-uppercase">Search for your desired book</h3>
                 <form class="movies" action="action_page.php">
                     <input type="text" placeholder="Search.." name="search" id="bookSearch">
-                    <button class="btn waves-effect waves-light" type="button" name="action" id="bookTitleInput">Submit
-                        <i class="material-icons right">send</i>
+
+                    <button class="btn waves-effect waves-light blue darken-4" type="button" name="action" id="bookTitleInput">Submit
+                        <i class="material-icons right">book</i>
+
                       </button>
                 </form>
             </div>
@@ -56,8 +61,9 @@
                 <h3 class="card-title text-uppercase">Search for your desired movie</h3>
                 <form class="books" action="action_page.php">
                     <input type="text" placeholder="Search.." name="search" id="movieSearch">
-                    <button class="btn waves-effect waves-light" type="button" name="action" id="titleInput">Submit
-                        <i class="material-icons right">send</i>
+
+                    <button class="btn waves-effect waves-light blue darken-4" type="button" name="action" id="titleInput">Submit
+                        <i class="material-icons right">movie</i>
                       </button>
                 </form>  
             </div>
@@ -77,7 +83,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col s6 white-text">
                     <div class="row">
                         <div class="col s6">
@@ -88,27 +93,20 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
-    
             <div class="row">
                 <div class="col s6">
                     <button class="btn waves-effect waves-light" type="button" name="action" id="clearBookStorage" style="display:block">Clear History
                         <i class="material-icons right">send</i>
                       </button>
                 </div>
-    
                 <div class="col s6">
                     <button class="btn waves-effect waves-light" type="button" name="action" id="clearMovieStorage" style="display:block">Clear History
                         <i class="material-icons right">send</i>
                       </button>
                 </div>
-    
-    
             </div>
         </div>
-        
-    
     
   
         <div class="row">
@@ -141,8 +139,10 @@
                 </div>
                 <div class="row">
                     <div class="col s12 py-3">
-                        <button class="btn waves-effect waves-light" type="button" name="action" id="clearCurrentBook">Clear
-                            <i class="material-icons right">block</i>
+
+                        <button class="btn waves-effect waves-light blue darken-4" type="button" name="action" id="clearCurrentBook">Clear
+                            <i class="material-icons right">clear_all</i>
+
                           </button>
                     </div>
                 </div>
@@ -177,8 +177,10 @@
 
                 <div class="row">
                     <div class="col s12 py-3">
-                        <button class="btn waves-effect waves-light" type="button" name="action" id="clearCurrent">Clear
-                            <i class="material-icons right">block</i>
+
+                        <button class="btn waves-effect waves-light blue darken-4" type="button" name="action" id="clearCurrent">Clear
+                            <i class="material-icons right">clear_all</i>
+
                           </button>
                     </div>
                 </div>
@@ -190,6 +192,7 @@
         </div>
 
     </div>
+             
         
     <div id="modal1" class="modal">
         <div class="modal-content">
