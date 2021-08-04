@@ -34,3 +34,11 @@ img.fullstack {
     margin-left: auto;
     margin-right: auto;
 }
+
+div#modal1.modal.open {
+    background-color: #bbdefb;
+}
+
+.modal .modal-footer {
+    background-color: #bbdefb;
+}
