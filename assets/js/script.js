@@ -270,7 +270,7 @@ var clearMovieBtn = document.getElementById("clearCurrent");
 
     }
 
-
+}
 //clearing local storage on button click
 var clearBookStorage = document.getElementById("clearBookStorage");
 clearBookStorage.addEventListener("click", function() {
@@ -289,3 +289,4 @@ clearMovieStorage.addEventListener("click", function() {
     movieHistory2.innerHTML = ''
 })
 
+  
