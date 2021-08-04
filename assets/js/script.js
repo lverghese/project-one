@@ -11,8 +11,12 @@ var director = document.getElementById("director");
 var movieTitle = document.getElementById("movieTitle");
 var movieImg = document.getElementById("movieImg");
 var noPoster = document.getElementById("noPoster");
+var movieHistory1 = document.getElementById("movieSearchHistory1");
+var movieHistory2 = document.getElementById("movieSearchHistory2");
+
 
 var bookInputEl = document.getElementById("bookSearch");
+var bookPublisher = document.getElementById("publisher");
 var bookPubDate = document.getElementById("pubDate");
 var pageCount = document.getElementById("pageCount");
 var bookTitle = document.getElementById("bookTitle");
@@ -20,6 +24,8 @@ var author = document.getElementById("author");
 var bookPlot = document.getElementById("smallSum");
 var bookImg = document.getElementById("bookImg");
 var noCover = document.getElementById("noCover");
+var bookHistory1 = document.getElementById("bookSearchHistory1");
+var bookHistory2 = document.getElementById("bookSearchHistory2");
 
 
 
@@ -47,15 +53,18 @@ var getBookData = function(book) {
                 } else {
                 bookInputEl.value = ''
                 bookTitle.innerHTML = checkData(data.items[0].volumeInfo.title);
+                bookPublisher.innerHTML = checkData(data.items[0].volumeInfo.publisher);
                 bookPubDate.innerHTML = checkData(data.items[0].volumeInfo.publishedDate);
-                pageCount.innerHTML = checkData(data.items[0].volumeInfo.pageCount);
+                pageCount.innerHTML = checkData(data.items[0].volumeInfo.pageCount) + " pages";
                 bookPlot.innerHTML = checkData(data.items[0].volumeInfo.description);
                 author.innerHTML = checkData(data.items[0].volumeInfo.authors[0]);
-                bookImg.src = checkData(data.items[0].volumeInfo.imageLinks.smallThumbnail);
+                bookImg.src = checkData(data.items[0].volumeInfo.imageLinks.thumbnail);
+
+
                 }
             });
         } else {
-            alert('Error: ' + response.statusText);
+            $('#modal2').modal("open");
         }
       })
       .catch(function(error) {
@@ -109,7 +118,7 @@ var getBookTitle = function() {
         getBookData(title);
         
     } else {
-        alert("Please input a book title")
+        $('#modal2').modal("open");
     }
 }
 
@@ -126,20 +135,37 @@ var getMovieTitle = function() {
         getMovieData(title);
         
     } else {
-        alert("Please input a movie title")
+        $('#modal1').modal("open");
     }
 }
 
 //search button for movie
-var searchBtn = document.getElementById("titleInput")
-searchBtn.addEventListener("click", function() {
+var searchMovieBtn = document.getElementById("titleInput")
+searchMovieBtn.addEventListener("click", function() {
     var movieInputEl = document.getElementById("movieSearch")
     var movieElement = {
         movieName: movieInputEl.value
     };
     saveMovie(movieElement);
     getMovieTitle();
+
+    movieHistory1.innerHTML = movieInputEl.value
+    movieHistory2.innerHTML = ''
     
+})
+
+//search button for book
+var searchBookBtn = document.getElementById("bookTitleInput")
+searchBookBtn.addEventListener("click", function() {
+    var bookInputEl = document.getElementById("bookSearch")
+    var bookElement = {
+        bookName: bookInputEl.value
+    };
+    saveBook(bookElement);
+    getBookTitle();
+
+    bookHistory1.innerHTML = bookInputEl.value
+  
 })
 
 //saving the movie searches in local storage
@@ -194,47 +220,26 @@ var saveBook = function(bookElement) {
 
 
 
-//search button for book
-var searchBookBtn = document.getElementById("bookTitleInput")
-searchBookBtn.addEventListener("click", function() {
-    var bookInputEl = document.getElementById("bookSearch")
-    var bookElement = {
-        bookName: bookInputEl.value
-    };
-    saveBook(bookElement);
-    getBookTitle();
-    
-})
 
-
-//search button for movie
-var searchMovieBtn = document.getElementById("titleInput")
-searchMovieBtn.addEventListener("click", function() {
-    var movieInputEl = document.getElementById("movieSearch")
-    var movieElement = {
-        movieName: movieInputEl.value
-    };
-    saveMovie(movieElement);
-    getMovieTitle();
-    
-})
 
 //clear button for book data
 var clearBookBtn = document.getElementById("clearCurrentBook");
 clearBookBtn.addEventListener("click", function() {
     bookTitle.innerHTML = ''
+    bookPublisher.innerHTML = ''
     bookPubDate.innerHTML = ''
     pageCount.innerHTML = ''
     bookPlot.innerHTML = ''
     author.innerHTML = ''
     bookImg.src = ''
     bookImg.style.display="none";
+    
 })
 
 
 //clear button for movie data
-var clearBtn = document.getElementById("clearCurrent");
-  clearBtn.addEventListener("click", function() {
+var clearMovieBtn = document.getElementById("clearCurrent");
+  clearMovieBtn.addEventListener("click", function() {
     movieTitle.innerHTML = ''
     releaseYear.innerHTML = ''
     boxOffice.innerHTML = ''
@@ -243,6 +248,7 @@ var clearBtn = document.getElementById("clearCurrent");
     director.innerHTML = ''
     movieImg.src = ''
     movieImg.style.display="none";
+
   })
 
 //checking if data is available from API
@@ -262,7 +268,25 @@ var clearBtn = document.getElementById("clearCurrent");
         bookImg.style.display="block";
         return result;
 
-        return result;
     }
 
 }
+//clearing local storage on button click
+var clearBookStorage = document.getElementById("clearBookStorage");
+clearBookStorage.addEventListener("click", function() {
+    window.localStorage.removeItem('bookData')
+    bookHistory1.innerHTML = ''
+    bookHistory2.innerHTML = ''
+    
+})
+
+
+//clear movie local storage on button click
+var clearMovieStorage = document.getElementById("clearMovieStorage");
+clearMovieStorage.addEventListener("click", function() {
+    window.localStorage.removeItem('movieData')
+    movieHistory1.innerHTML = ''
+    movieHistory2.innerHTML = ''
+})
+
+  
