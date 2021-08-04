@@ -19,7 +19,7 @@ div.card {
     opacity: 0.7;
 }
 
-.card:active {
+.card:hover {
     opacity: 1;
 }
   
