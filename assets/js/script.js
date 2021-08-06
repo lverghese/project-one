@@ -27,6 +27,13 @@ var noCover = document.getElementById("noCover");
 var bookHistory1 = document.getElementById("bookSearchHistory1");
 var bookHistory2 = document.getElementById("bookSearchHistory2");
 
+//disable enter key
+$(document).keypress(
+    function (event) {
+        if (event.which == '13') {
+            event.preventDefault();
+        }
+    });
 
 
 
@@ -149,8 +156,8 @@ searchMovieBtn.addEventListener("click", function() {
     saveMovie(movieElement);
     getMovieTitle();
 
-    movieHistory1.innerHTML = movieInputEl.value
-    movieHistory2.innerHTML = ''
+    //movieHistory1.innerHTML = movieInputEl.value
+    //movieHistory2.innerHTML = ''
     
 })
 
@@ -164,16 +171,19 @@ searchBookBtn.addEventListener("click", function() {
     saveBook(bookElement);
     getBookTitle();
 
-    bookHistory1.innerHTML = bookInputEl.value
+    //bookHistory1.innerHTML = bookInputEl.value
   
 })
 
 //saving the movie searches in local storage
 var saveMovie = function(movieElement) {
 
+    var myMovieData;
+
     if (localStorage.getItem("movieData") == null) {
         var newArray = [];
         newArray.push(movieElement);
+        myMovieData = newArray;
         localStorage.setItem("movieData", JSON.stringify(newArray));
     } else {
         //array already exists in storage
@@ -189,16 +199,25 @@ var saveMovie = function(movieElement) {
             currentMovieData.push(movieElement);
             localStorage.setItem("movieData", JSON.stringify(currentMovieData));
         }
+        myMovieData = currentMovieData;
     }
-   
+    if(myMovieData.length < 2){
+        movieHistory1.innerHTML = myMovieData[myMovieData.length - 1].movieName;
+    } else {
+        movieHistory1.innerHTML = myMovieData[myMovieData.length - 1].movieName;
+        movieHistory2.innerHTML = myMovieData[myMovieData.length - 2].movieName;
+    }
 };
 
 //saving the book searches in local storage
 var saveBook = function(bookElement) {
 
+    var myBookData;
+
     if (localStorage.getItem("bookData") == null) {
         var newArray = [];
         newArray.push(bookElement);
+        myBookData = newArray;
         localStorage.setItem("bookData", JSON.stringify(newArray));
     } else {
         //array already exists in storage
@@ -214,6 +233,13 @@ var saveBook = function(bookElement) {
             currentBookData.push(bookElement);
             localStorage.setItem("bookData", JSON.stringify(currentBookData));
         }
+        myBookData = currentBookData;
+    }
+    if(myBookData.length < 2){
+        bookHistory1.innerHTML = myBookData[myBookData.length - 1].bookName;
+    } else {
+        bookHistory1.innerHTML = myBookData[myBookData.length - 1].bookName;
+        bookHistory2.innerHTML = myBookData[myBookData.length - 2].bookName;
     }
    
 };
