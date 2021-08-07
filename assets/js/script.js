@@ -240,13 +240,8 @@ var saveBook = function(bookElement) {
 
 
 
-<<<<<<< HEAD
 
 
-=======
-
-
->>>>>>> 69240224c7ad2d1c953247e89fa94441a8fca44a
 //clear button for book data
 var clearBookBtn = document.getElementById("clearCurrentBook");
 clearBookBtn.addEventListener("click", function() {
@@ -324,10 +319,4 @@ clearMovieStorage.addEventListener("click", function() {
     window.localStorage.removeItem('movieData')
     movieHistory1.innerHTML = ''
     movieHistory2.innerHTML = ''
-<<<<<<< HEAD
 })
-=======
-})
-
-  
->>>>>>> 69240224c7ad2d1c953247e89fa94441a8fca44a
