@@ -1,6 +1,9 @@
 body {
     background: url(../images/background.jpg);
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 h3.brand-logo.center {
@@ -42,4 +45,9 @@ img.fullstack {
 
 .modal .modal-footer {
     background-color: #64b5f6;
+}
+
+.fullstack {
+    max-width: 100%;
+    height: auto;
 }
