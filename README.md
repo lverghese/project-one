@@ -19,6 +19,9 @@ Third search/mixed
 Cleared history for The Notebook
 ![Screenshot](assets/images/notebookhistorycleared.png)
 
+### Mobile view
+![Screenshot](assets/images/mobile.jpg)
+
 ## Built with
 HTML
 CSS
@@ -26,4 +29,4 @@ Materialize
 Javascript
 
 ## Contribution
-Completed by Logan Verghese & Kimberly Collazo
+Completed by Logan Verghese (https://github.com/lverghese) & Kimberly Collazo (https://github.com/Lightfooted)
