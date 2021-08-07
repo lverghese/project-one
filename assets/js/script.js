@@ -155,9 +155,6 @@ searchMovieBtn.addEventListener("click", function() {
     };
     saveMovie(movieElement);
     getMovieTitle();
-
-    //movieHistory1.innerHTML = movieInputEl.value
-    //movieHistory2.innerHTML = ''
     
 })
 
@@ -170,8 +167,6 @@ searchBookBtn.addEventListener("click", function() {
     };
     saveBook(bookElement);
     getBookTitle();
-
-    //bookHistory1.innerHTML = bookInputEl.value
   
 })
 
