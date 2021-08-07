@@ -82,7 +82,7 @@ var getBookData = function(book) {
     //function to get info from the movie api
 var getMovieData = function(movie) {
    
-    var movieUrl = "http://www.omdbapi.com/?apikey=" + movieAPIKey + "&t=" + movie + "&r=json";
+    var movieUrl = "https://www.omdbapi.com/?apikey=" + movieAPIKey + "&t=" + movie + "&r=json";
 
     fetch(movieUrl)
     .then(function(response) {
