@@ -59,13 +59,13 @@ var getBookData = function(book) {
                     $('#modal2').modal("open");
                 } else {
                 bookInputEl.value = ''
-                bookTitle.innerHTML = checkData(data.items[0].volumeInfo.title);
-                bookPublisher.innerHTML = checkData(data.items[0].volumeInfo.publisher);
-                bookPubDate.innerHTML = checkData(data.items[0].volumeInfo.publishedDate);
-                pageCount.innerHTML = checkData(data.items[0].volumeInfo.pageCount) + " pages";
-                bookPlot.innerHTML = checkData(data.items[0].volumeInfo.description);
-                author.innerHTML = checkData(data.items[0].volumeInfo.authors[0]);
-                bookImg.src = checkData(data.items[0].volumeInfo.imageLinks.thumbnail);
+                bookTitle.innerHTML = checkData(data.items[0].volumeInfo.title, 'book');
+                bookPublisher.innerHTML = checkData(data.items[0].volumeInfo.publisher, 'book');
+                bookPubDate.innerHTML = checkData(data.items[0].volumeInfo.publishedDate, 'book');
+                pageCount.innerHTML = checkData(data.items[0].volumeInfo.pageCount, 'book') + " pages";
+                bookPlot.innerHTML = checkData(data.items[0].volumeInfo.description, 'book');
+                author.innerHTML = checkData(data.items[0].volumeInfo.authors[0], 'book');
+                bookImg.src = checkData(data.items[0].volumeInfo.imageLinks.thumbnail, 'book');
 
 
                 }
@@ -95,13 +95,13 @@ var getMovieData = function(movie) {
                     $('#modal1').modal("open");
                 } else {
                 movieInputEl.value = ''
-                movieTitle.innerHTML = checkData(title.Title);
-                releaseYear.innerHTML = checkData(title.Released);
-                boxOffice.innerHTML = checkData(title.BoxOffice);
-                smallPlot.innerHTML = checkData(title.Plot);
-                movieRating.innerHTML = checkData(title.Rated);
-                director.innerHTML = checkData(title.Director);
-                movieImg.src = checkData(title.Poster);
+                movieTitle.innerHTML = checkData(title.Title, 'movie');
+                releaseYear.innerHTML = checkData(title.Released, 'movie');
+                boxOffice.innerHTML = checkData(title.BoxOffice, 'movie');
+                smallPlot.innerHTML = checkData(title.Plot, 'movie');
+                movieRating.innerHTML = checkData(title.Rated, 'movie');
+                director.innerHTML = checkData(title.Director, 'movie');
+                movieImg.src = checkData(title.Poster, 'movie');
                 }
             
             });
@@ -278,23 +278,35 @@ var clearMovieBtn = document.getElementById("clearCurrent");
   })
 
 //checking if data is available from API
-  var checkData = function(result) {
-    if (result == null) {
-        return "N/A"
-    } else if (result == "N/A") {
-        noPoster.style.display="block";
-        movieImg.style.display="none";
-        noCover.style.display="block";
-        bookImg.style.display="none";
-        return result;
-    } else {
-        noPoster.style.display="none";
-        movieImg.style.display="block";
-        noCover.style.display="none";
-        bookImg.style.display="block";
-        return result;
+var checkData = function(result, checkType) {
 
+    if(checkType == 'book'){
+        if (result == null) {
+            return "N/A"
+        } else if (result == "N/A") {
+            noCover.style.display="block";
+            bookImg.style.display="none";
+            return result;
+        } else {
+            noCover.style.display="none";
+            bookImg.style.display="block";
+            return result;
+        }
+    } else {
+        if (result == null) {
+            return "N/A"
+        } else if (result == "N/A") {
+            noPoster.style.display="block";
+            movieImg.style.display="none";
+            return result;
+        } else {
+            noPoster.style.display="none";
+            movieImg.style.display="block";
+            return result;
+
+        }
     }
+
 
 }
 //clearing local storage on button click
