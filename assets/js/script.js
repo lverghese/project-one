@@ -1,4 +1,3 @@
-
 const bookAPIKey = "AIzaSyDcXOeyScItwcFMcUTf8T0ESWNi1x22kvU"
 const movieAPIKey = "9460c855"
 
@@ -11,8 +10,12 @@ var director = document.getElementById("director");
 var movieTitle = document.getElementById("movieTitle");
 var movieImg = document.getElementById("movieImg");
 var noPoster = document.getElementById("noPoster");
+var movieHistory1 = document.getElementById("movieSearchHistory1");
+var movieHistory2 = document.getElementById("movieSearchHistory2");
+
 
 var bookInputEl = document.getElementById("bookSearch");
+var bookPublisher = document.getElementById("publisher");
 var bookPubDate = document.getElementById("pubDate");
 var pageCount = document.getElementById("pageCount");
 var bookTitle = document.getElementById("bookTitle");
@@ -20,7 +23,16 @@ var author = document.getElementById("author");
 var bookPlot = document.getElementById("smallSum");
 var bookImg = document.getElementById("bookImg");
 var noCover = document.getElementById("noCover");
+var bookHistory1 = document.getElementById("bookSearchHistory1");
+var bookHistory2 = document.getElementById("bookSearchHistory2");
 
+//disable enter key
+$(document).keypress(
+    function (event) {
+        if (event.which == '13') {
+            event.preventDefault();
+        }
+    });
 
 
 
@@ -46,16 +58,19 @@ var getBookData = function(book) {
                     $('#modal2').modal("open");
                 } else {
                 bookInputEl.value = ''
-                bookTitle.innerHTML = checkData(data.items[0].volumeInfo.title);
-                bookPubDate.innerHTML = checkData(data.items[0].volumeInfo.publishedDate);
-                pageCount.innerHTML = checkData(data.items[0].volumeInfo.pageCount);
-                bookPlot.innerHTML = checkData(data.items[0].volumeInfo.description);
-                author.innerHTML = checkData(data.items[0].volumeInfo.authors[0]);
-                bookImg.src = checkData(data.items[0].volumeInfo.imageLinks.smallThumbnail);
+                bookTitle.innerHTML = checkData(data.items[0].volumeInfo.title, 'book');
+                bookPublisher.innerHTML = checkData(data.items[0].volumeInfo.publisher, 'book');
+                bookPubDate.innerHTML = checkData(data.items[0].volumeInfo.publishedDate, 'book');
+                pageCount.innerHTML = checkData(data.items[0].volumeInfo.pageCount, 'book') + " pages";
+                bookPlot.innerHTML = checkData(data.items[0].volumeInfo.description, 'book');
+                author.innerHTML = checkData(data.items[0].volumeInfo.authors[0], 'book');
+                bookImg.src = checkData(data.items[0].volumeInfo.imageLinks.thumbnail, 'book');
+
+
                 }
             });
         } else {
-            alert('Error: ' + response.statusText);
+            $('#modal2').modal("open");
         }
       })
       .catch(function(error) {
@@ -66,7 +81,7 @@ var getBookData = function(book) {
     //function to get info from the movie api
 var getMovieData = function(movie) {
    
-    var movieUrl = "http://www.omdbapi.com/?apikey=" + movieAPIKey + "&t=" + movie + "&r=json";
+    var movieUrl = "https://www.omdbapi.com/?apikey=" + movieAPIKey + "&t=" + movie + "&r=json";
 
     fetch(movieUrl)
     .then(function(response) {
@@ -79,13 +94,13 @@ var getMovieData = function(movie) {
                     $('#modal1').modal("open");
                 } else {
                 movieInputEl.value = ''
-                movieTitle.innerHTML = checkData(title.Title);
-                releaseYear.innerHTML = checkData(title.Released);
-                boxOffice.innerHTML = checkData(title.BoxOffice);
-                smallPlot.innerHTML = checkData(title.Plot);
-                movieRating.innerHTML = checkData(title.Rated);
-                director.innerHTML = checkData(title.Director);
-                movieImg.src = checkData(title.Poster);
+                movieTitle.innerHTML = checkData(title.Title, 'movie');
+                releaseYear.innerHTML = checkData(title.Released, 'movie');
+                boxOffice.innerHTML = checkData(title.BoxOffice, 'movie');
+                smallPlot.innerHTML = checkData(title.Plot, 'movie');
+                movieRating.innerHTML = checkData(title.Rated, 'movie');
+                director.innerHTML = checkData(title.Director, 'movie');
+                movieImg.src = checkData(title.Poster, 'movie');
                 }
             
             });
@@ -109,7 +124,7 @@ var getBookTitle = function() {
         getBookData(title);
         
     } else {
-        alert("Please input a book title")
+        $('#modal2').modal("open");
     }
 }
 
@@ -126,13 +141,13 @@ var getMovieTitle = function() {
         getMovieData(title);
         
     } else {
-        alert("Please input a movie title")
+        $('#modal1').modal("open");
     }
 }
 
 //search button for movie
-var searchBtn = document.getElementById("titleInput")
-searchBtn.addEventListener("click", function() {
+var searchMovieBtn = document.getElementById("titleInput")
+searchMovieBtn.addEventListener("click", function() {
     var movieInputEl = document.getElementById("movieSearch")
     var movieElement = {
         movieName: movieInputEl.value
@@ -142,12 +157,27 @@ searchBtn.addEventListener("click", function() {
     
 })
 
+//search button for book
+var searchBookBtn = document.getElementById("bookTitleInput")
+searchBookBtn.addEventListener("click", function() {
+    var bookInputEl = document.getElementById("bookSearch")
+    var bookElement = {
+        bookName: bookInputEl.value
+    };
+    saveBook(bookElement);
+    getBookTitle();
+  
+})
+
 //saving the movie searches in local storage
 var saveMovie = function(movieElement) {
+
+    var myMovieData;
 
     if (localStorage.getItem("movieData") == null) {
         var newArray = [];
         newArray.push(movieElement);
+        myMovieData = newArray;
         localStorage.setItem("movieData", JSON.stringify(newArray));
     } else {
         //array already exists in storage
@@ -163,16 +193,25 @@ var saveMovie = function(movieElement) {
             currentMovieData.push(movieElement);
             localStorage.setItem("movieData", JSON.stringify(currentMovieData));
         }
+        myMovieData = currentMovieData;
     }
-   
+    if(myMovieData.length < 2){
+        movieHistory1.innerHTML = myMovieData[myMovieData.length - 1].movieName;
+    } else {
+        movieHistory1.innerHTML = myMovieData[myMovieData.length - 1].movieName;
+        movieHistory2.innerHTML = myMovieData[myMovieData.length - 2].movieName;
+    }
 };
 
 //saving the book searches in local storage
 var saveBook = function(bookElement) {
 
+    var myBookData;
+
     if (localStorage.getItem("bookData") == null) {
         var newArray = [];
         newArray.push(bookElement);
+        myBookData = newArray;
         localStorage.setItem("bookData", JSON.stringify(newArray));
     } else {
         //array already exists in storage
@@ -188,53 +227,39 @@ var saveBook = function(bookElement) {
             currentBookData.push(bookElement);
             localStorage.setItem("bookData", JSON.stringify(currentBookData));
         }
+        myBookData = currentBookData;
+    }
+    if(myBookData.length < 2){
+        bookHistory1.innerHTML = myBookData[myBookData.length - 1].bookName;
+    } else {
+        bookHistory1.innerHTML = myBookData[myBookData.length - 1].bookName;
+        bookHistory2.innerHTML = myBookData[myBookData.length - 2].bookName;
     }
    
 };
 
 
 
-//search button for book
-var searchBookBtn = document.getElementById("bookTitleInput")
-searchBookBtn.addEventListener("click", function() {
-    var bookInputEl = document.getElementById("bookSearch")
-    var bookElement = {
-        bookName: bookInputEl.value
-    };
-    saveBook(bookElement);
-    getBookTitle();
-    
-})
 
-
-//search button for movie
-var searchMovieBtn = document.getElementById("titleInput")
-searchMovieBtn.addEventListener("click", function() {
-    var movieInputEl = document.getElementById("movieSearch")
-    var movieElement = {
-        movieName: movieInputEl.value
-    };
-    saveMovie(movieElement);
-    getMovieTitle();
-    
-})
 
 //clear button for book data
 var clearBookBtn = document.getElementById("clearCurrentBook");
 clearBookBtn.addEventListener("click", function() {
     bookTitle.innerHTML = ''
+    bookPublisher.innerHTML = ''
     bookPubDate.innerHTML = ''
     pageCount.innerHTML = ''
     bookPlot.innerHTML = ''
     author.innerHTML = ''
     bookImg.src = ''
     bookImg.style.display="none";
+    
 })
 
 
 //clear button for movie data
-var clearBtn = document.getElementById("clearCurrent");
-  clearBtn.addEventListener("click", function() {
+var clearMovieBtn = document.getElementById("clearCurrent");
+  clearMovieBtn.addEventListener("click", function() {
     movieTitle.innerHTML = ''
     releaseYear.innerHTML = ''
     boxOffice.innerHTML = ''
@@ -243,26 +268,55 @@ var clearBtn = document.getElementById("clearCurrent");
     director.innerHTML = ''
     movieImg.src = ''
     movieImg.style.display="none";
+
   })
 
 //checking if data is available from API
-  var checkData = function(result) {
-    if (result == null) {
-        return "N/A"
-    } else if (result == "N/A") {
-        noPoster.style.display="block";
-        movieImg.style.display="none";
-        noCover.style.display="block";
-        bookImg.style.display="none";
-        return result;
-    } else {
-        noPoster.style.display="none";
-        movieImg.style.display="block";
-        noCover.style.display="none";
-        bookImg.style.display="block";
-        return result;
+var checkData = function(result, checkType) {
 
-        return result;
+    if(checkType == 'book'){
+        if (result == null) {
+            return "N/A"
+        } else if (result == "N/A") {
+            noCover.style.display="block";
+            bookImg.style.display="none";
+            return result;
+        } else {
+            noCover.style.display="none";
+            bookImg.style.display="block";
+            return result;
+        }
+    } else {
+        if (result == null) {
+            return "N/A"
+        } else if (result == "N/A") {
+            noPoster.style.display="block";
+            movieImg.style.display="none";
+            return result;
+        } else {
+            noPoster.style.display="none";
+            movieImg.style.display="block";
+            return result;
+
+        }
     }
 
+
 }
+//clearing local storage on button click
+var clearBookStorage = document.getElementById("clearBookStorage");
+clearBookStorage.addEventListener("click", function() {
+    window.localStorage.removeItem('bookData')
+    bookHistory1.innerHTML = ''
+    bookHistory2.innerHTML = ''
+    
+})
+
+
+//clear movie local storage on button click
+var clearMovieStorage = document.getElementById("clearMovieStorage");
+clearMovieStorage.addEventListener("click", function() {
+    window.localStorage.removeItem('movieData')
+    movieHistory1.innerHTML = ''
+    movieHistory2.innerHTML = ''
+})

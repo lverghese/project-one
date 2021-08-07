@@ -17,16 +17,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css"/>
-    <link href="https://www.fontspace.com/category/logo"><img class="fullstack" src="https://see.fontimg.com/api/renderfont4/lJMd/eyJyIjoiZnMiLCJoIjo2NSwidyI6MTAwMCwiZnMiOjY1LCJmZ2MiOiIjRkZGRkZGIiwiYmdjIjoiIzNDOTdBMiIsInQiOjF9/SGFsZlN0YWNrIE1lZGlh/above-demo-regular.png">
+
+    <link href="https://www.fontspace.com/category/logo">
     <script src="https://code.jquery.com/jquery.js"></script>
     <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg" />
 
    
-
 </head>
 <body>
     <!-- Page Layout here -->
+    <div>
+        <img class="fullstack" src="https://see.fontimg.com/api/renderfont4/lJMd/eyJyIjoiZnMiLCJoIjo2NSwidyI6MTAwMCwiZnMiOjY1LCJmZ2MiOiIjRkZGRkZGIiwiYmdjIjoiIzNDOTdBMiIsInQiOjF9/SGFsZlN0YWNrIE1lZGlh/above-demo-regular.png">
+    </div>
+
     <header>
+        
         <div>
 
             <h3 class="brand-logo center"></h3>
@@ -46,25 +51,31 @@
                 <h3 class="card-title text-uppercase">Search for your desired book</h3>
                 <form class="movies" action="action_page.php">
                     <input type="text" placeholder="Search.." name="search" id="bookSearch">
+
                     <button class="btn waves-effect waves-light blue darken-4" type="button" name="action" id="bookTitleInput">Submit
                         <i class="material-icons right">book</i>
+
                       </button>
                 </form>
             </div>
+        
+
         </div>
         <div class="col s6">
             <div class="card">
                 <h3 class="card-title text-uppercase">Search for your desired movie</h3>
                 <form class="books" action="action_page.php">
                     <input type="text" placeholder="Search.." name="search" id="movieSearch">
+
                     <button class="btn waves-effect waves-light blue darken-4" type="button" name="action" id="titleInput">Submit
                         <i class="material-icons right">movie</i>
                       </button>
                 </form>  
             </div>
-        </div>
-        </div>
 
+
+        </div>
+        </div>
         <div class="row">
             <div class="row">
                 <div class="col s6 white-text">
@@ -90,12 +101,12 @@
             </div>
             <div class="row">
                 <div class="col s6">
-                    <button class="btn waves-effect waves-light" type="button" name="action" id="clearBookStorage" style="display:block">Clear History
+                    <button class="btn waves-effect waves-light blue darken-4" type="button" name="action" id="clearBookStorage" style="display:block">Clear History
                         <i class="material-icons right">send</i>
                       </button>
                 </div>
                 <div class="col s6">
-                    <button class="btn waves-effect waves-light" type="button" name="action" id="clearMovieStorage" style="display:block">Clear History
+                    <button class="btn waves-effect waves-light blue darken-4" type="button" name="action" id="clearMovieStorage" style="display:block">Clear History
                         <i class="material-icons right">send</i>
                       </button>
                 </div>
@@ -120,18 +131,23 @@
                     <div class="col s12 py-3 white-text"> Author: <span id="author"></span></div>
                 </div>
                 <div class="row">
+                    <div class="col s12 py-3 white-text"> Publisher: <span id="publisher"></span></div>
+                </div>
+                <div class="row">
                     <div class="col s12 py-3 white-text">Publishing Date: <span id="pubDate"></span></div>
                 </div>
                 <div class="row">
                     <div class="col s12 py-3 white-text">Page Count: <span id="pageCount"></span></div>
                 </div>
                 <div class="row">
-                    <div class="col s12 py-3 white-text">Small Plot: <span id="smallSum"></span></div>
+                    <div class="col s12 py-3 white-text">Plot: <span id="smallSum"></span></div>
                 </div>
                 <div class="row">
                     <div class="col s12 py-3">
-                        <button class="btn waves-effect waves-light blue darken-4" type="button" name="action" id="clearCurrentBook">Clear history
+
+                        <button class="btn waves-effect waves-light blue darken-4" type="button" name="action" id="clearCurrentBook">Clear
                             <i class="material-icons right">clear_all</i>
+
                           </button>
                     </div>
                 </div>
@@ -143,13 +159,13 @@
                 </div>
 
                 <div class="row center-align">
-                    <div class="col s6 center-align">
+                    <div class="col s5 center-align">
                     <img src="" alt="Movie Image" class="responsive-img" id="movieImg" style="display:none">
                     <span id="noPoster" style="display:none" class="white-text">No Poster Available</span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12 py-3 white-text"> Release Date: <span id="releaseYear"></span></div>
+                    <div class="col s12 py-3 white-text"> Director: <span id="director"></span></div>
                 </div>
                 <div class="row">
                     <div class="col s12 py-3 white-text">Movie Rating: <span id="movieRating"></span></div>
@@ -158,16 +174,18 @@
                     <div class="col s12 py-3 white-text">Box Office Earnings: <span id="boxOffice"></span></div>
                 </div>
                 <div class="row">
-                    <div class="col s12 py-3 white-text">Small Plot Summary: <span id="smallPlot"></span></div>
+                    <div class="col s12 py-3 white-text">Release Date: <span id="releaseYear"></span></div>
                 </div>
                 <div class="row">
-                    <div class="col s12 py-3 white-text">Director: <span id="director"></span></div>
+                    <div class="col s12 py-3 white-text">Small Plot Summary: <span id="smallPlot"></span></div>
                 </div>
 
                 <div class="row">
                     <div class="col s12 py-3">
-                        <button class="btn waves-effect waves-light blue darken-4" type="button" name="action" id="clearCurrent">Clear history
+
+                        <button class="btn waves-effect waves-light blue darken-4" type="button" name="action" id="clearCurrent">Clear
                             <i class="material-icons right">clear_all</i>
+
                           </button>
                     </div>
                 </div>
@@ -205,5 +223,4 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="assets/js/script.js"></script>
-
 </html>
